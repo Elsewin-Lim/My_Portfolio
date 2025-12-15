@@ -82,7 +82,7 @@ html {
 }
 .intro-paragraph {
   width: 300px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .book-opened {
@@ -122,11 +122,19 @@ html {
 }
 
 /* Existing styles for the book component */
-.pokemon-logo {
+/* .pokemon-logo {
   border: 2px solid #b31515;
   width: 80%;
   max-width: 300px;
   margin-bottom: 30px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+} */
+
+#BookCover {
+  border: 2px solid #141414;
+  width: 100%;
+  width: 370px;
+  height: 600px;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 

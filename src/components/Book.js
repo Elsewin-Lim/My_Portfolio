@@ -1,6 +1,7 @@
 import HTMLFlipBook from "react-pageflip";
 import React, { useState, useRef } from 'react';
-
+import Book_cover from '../images/Book_cover.gif';
+// import BookCover from 'src/Book_cover.gif';
 function Book() {
   // State to track if the book is in single-page mode (e.g., closed or start)
   const [isOnCover, setisOnCover] = useState(true);
@@ -12,7 +13,6 @@ function Book() {
   };
 
   const book = useRef();
-
   const pokemonData = [
     {
       id: "006",
@@ -70,12 +70,12 @@ function Book() {
           
           {/* Removed the .nav wrapper */}
           <HTMLFlipBook
-            width={170} 
-            height={270}
-            // minWidth={200}
-            // minHeight={300} 
-            // maxWidth={370} 
-            // maxHeight={600}
+            minWidth={200}
+            minHeight={300} 
+            maxWidth={370} 
+            maxHeight={600}
+            width={370}
+            height={600}
             maxShadowOpacity={0.7}
             drawShadow={true}
             showCover={true}
@@ -84,9 +84,10 @@ function Book() {
             ref={book}
           >
             <div className="page" style={{ background: 'transparent' }}>
-              <div className="page-content cover">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" 
+              <div className="page-content">
+                <img
+                  id = "BookCover" 
+                  src= {Book_cover}
                   alt="Pokémon Logo" 
                   className="pokemon-logo"
                 />
