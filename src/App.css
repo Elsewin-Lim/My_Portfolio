@@ -9,6 +9,7 @@
 
 body,
 html {
+  border: 2px solid #b31515;
   height: 100dvh;
   width: 100dvw;
   background: #0e1a26;
@@ -19,6 +20,7 @@ html {
 }
 
 #root {
+  border: 2px solid #b31515;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -27,6 +29,7 @@ html {
 }
 
 .container {
+  border: 2px solid #a12664;
   width: 100%;
   height: 100%;
   display: flex;
@@ -34,20 +37,59 @@ html {
   align-items: center;
 }
 
+.nav {
+  border: 2px solid #b38f15;
+  
+}
+
+.sticky-nav {
+  position: absolute; 
+  top: 50px;
+  left: 20px; 
+  right: auto;
+}
+
+.book-layout {
+  border: 2px solid #15b3b3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 600px;
+  transition: all 0.3s ease;
+}
+
+.intro-paragraph {
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.book-opened .intro-paragraph {
+  opacity: 0; 
+  width: 0;   
+  height: 0;
+  padding: 0; 
+  margin: 0;  
+}
+
 .pokemon-logo {
+  border: 2px solid #b31515;
   width: 80%;
   max-width: 300px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .page {
+  border: 2px solid #32ce1a;
   background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 .page-content {
+  border: 2px solid #9fa79e;
   width: 100%;
   height: 100%;
   display: flex;
@@ -59,12 +101,14 @@ html {
 }
 
 .cover {
+  border: 2px solid #3b1da7;
   background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
   color: white;
   font-weight: bold;
 }
 
 .pokemon-container {
+  border: 2px solid #b7acb5;
   display: flex;
   flex-direction: column;
   align-items: center;

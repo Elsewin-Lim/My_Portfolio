@@ -1,7 +1,19 @@
 // import React, { useState, useEffect } from 'react'
 import HTMLFlipBook from "react-pageflip";
+import React, { useState } from 'react';
+import { useRef } from 'react';
 
 function Book() {
+  // State to track if the book is in single-page mode (e.g., closed or start)
+  const [isOnCover, setisOnCover] = useState(true);
+
+  // This handler updates the state based on how many pages are visible
+  const handlePage = (e) => {
+    // If e.data is 1, it means the book is showing a single page (e.g., cover or last page)
+    setisOnCover(e.data === 0);
+  };
+
+  const book = useRef();
 
   const pokemonData = [
     {
@@ -49,49 +61,60 @@ function Book() {
   ];
 
   return (
-    <HTMLFlipBook 
-      width={370} 
-      height={600}
-      maxShadowOpacity={0.7}
-      drawShadow={true}
-      showCover={true}
-      size='fixed'
-    >
-      <div className="page" style={{ background: 'transparent' }}>
-        <div className="page-content cover">
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" 
-            alt="Pokémon Logo" 
-            className="pokemon-logo"
-          />
-        </div>
-      </div>
-
-      {pokemonData.map((pokemon) => (
-        <div className="page" key={pokemon.id}>
-          <div className="page-content">
-            <div className="pokemon-container">
-              <img 
-                src={`https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${pokemon.id}.png`} 
-                alt={pokemon.name} 
-              />
-              <div className="pokemon-info">
-                <h2 className="pokemon-name">{pokemon.name}</h2>
-                <p className="pokemon-number">#{pokemon.id}</p>
-                <div>
-                  {pokemon.types.map((type) => (
-                    <span key={type} className={`pokemon-type type-${type.toLowerCase()}`}>
-                      {type}
-                    </span>
-                  ))}
-                </div>
-                <p className="pokemon-description">{pokemon.description}</p>
-              </div>
-            </div>
+    <div className= "container" >
+      <div className={`book-layout ${isOnCover ? 'book-cover-mode' : 'book-opened'}`}>
+          <div className="intro-paragraph">
+            <h2>Welcome to Our Story</h2>
+            <p>This paragraph is displayed next to the book cover when the book is closed (single-page mode).</p>
+            <p>Watch it disappear and the book expand to cover this space when you flip to the first spread!</p>
           </div>
-        </div>
-      ))}
-    </HTMLFlipBook>
+            <HTMLFlipBook 
+              width={370} 
+              height={600}
+              maxShadowOpacity={0.7}
+              drawShadow={true}
+              showCover={true}
+              size='fixed'
+              onFlip={handlePage}
+              ref={book}
+            >
+              <div className="page" style={{ background: 'transparent' }}>
+                <div className="page-content cover">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" 
+                    alt="Pokémon Logo" 
+                    className="pokemon-logo"
+                  />
+                </div>
+              </div>
+
+              {pokemonData.map((pokemon) => (
+                <div className="page" key={pokemon.id}>
+                  <div className="page-content">
+                    <div className="pokemon-container">
+                      <img 
+                        src={`https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${pokemon.id}.png`} 
+                        alt={pokemon.name} 
+                      />
+                      <div className="pokemon-info">
+                        <h2 className="pokemon-name">{pokemon.name}</h2>
+                        <p className="pokemon-number">#{pokemon.id}</p>
+                        <div>
+                          {pokemon.types.map((type) => (
+                            <span key={type} className={`pokemon-type type-${type.toLowerCase()}`}>
+                              {type}
+                            </span>
+                          ))}
+                        </div>
+                        <p className="pokemon-description">{pokemon.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </HTMLFlipBook>
+      </div>
+    </div>
   );
 }
 
