@@ -13,7 +13,7 @@ html {
   height: 100dvh;
   width: 100dvw;
   background: #0e1a26;
-  overflow: hidden;
+  overflow: hidden; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,31 +37,56 @@ html {
   align-items: center;
 }
 
-.nav {
-  border: 2px solid #b38f15;
-  
-}
-
-.sticky-nav {
-  position: absolute; 
-  top: 50px;
-  left: 20px; 
-  right: auto;
-}
+/* REMOVED: .nav and .sticky-nav styles */
 
 .book-layout {
   border: 2px solid #15b3b3;
-  display: flex;
+  display: flex; /* Uses Flexbox for alignment */
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 100dvw; /* Allow width to be determined by content/min-width */
   max-height: 600px;
   transition: all 0.3s ease;
+  
+  /* CRITICAL: Set gap to 0 to remove space between all children */
+  gap: 0; 
 }
 
+.book-layout .book-opened{ 
+  border: 2px solid #24d769; 
+  display: grid; 
+  grid-template-columns: 80% 20%; 
+  width: 100dvw; 
+  box-sizing: border-box; 
+}
+
+.book-opened .page { 
+  border: 2px solid #db6917;
+  display: grid; 
+  justify-content: end; 
+} 
+
+.book-opened .nav-buttons { 
+  border: 2px solid #154ab3; 
+  display: grid;
+  justify-content: start;
+  gap: 10px; 
+}
+
+.book-cover-mode .nav-buttons {
+  border: 2px solid #b31515;
+  display: flex;
+  flex-wrap: wrap;
+  width: 130px;
+  gap: 10px;
+}
 .intro-paragraph {
   width: 300px;
   transition: all 0.3s ease;
+}
+
+.book-opened {
+  min-width: 800px; 
 }
 
 .book-opened .intro-paragraph {
@@ -72,6 +97,31 @@ html {
   margin: 0;  
 }
 
+/* Styles for the button wrapper */
+.book-controls {
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    margin-left: -2px; 
+}
+
+.book-control-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  /* CRITICAL: Remove the left border-radius for a flush look */
+  border-radius: 0 5px 5px 0; 
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.book-control-button:hover {
+  background-color: #2980b9;
+}
+
+/* Existing styles for the book component */
 .pokemon-logo {
   border: 2px solid #b31515;
   width: 80%;

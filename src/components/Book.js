@@ -1,7 +1,5 @@
-// import React, { useState, useEffect } from 'react'
 import HTMLFlipBook from "react-pageflip";
-import React, { useState } from 'react';
-import { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 function Book() {
   // State to track if the book is in single-page mode (e.g., closed or start)
@@ -9,8 +7,8 @@ function Book() {
 
   // This handler updates the state based on how many pages are visible
   const handlePage = (e) => {
-    // If e.data is 1, it means the book is showing a single page (e.g., cover or last page)
-    setisOnCover(e.data === 0);
+    // If e.data is 0 (first page/cover), it means the book is showing a single page
+    setisOnCover(e.data === 0 || e.data === pokemonData.length);
   };
 
   const book = useRef();
@@ -62,57 +60,81 @@ function Book() {
 
   return (
     <div className= "container" >
+      {/* Removed top-level button */}
       <div className={`book-layout ${isOnCover ? 'book-cover-mode' : 'book-opened'}`}>
           <div className="intro-paragraph">
             <h2>Welcome to Our Story</h2>
             <p>This paragraph is displayed next to the book cover when the book is closed (single-page mode).</p>
             <p>Watch it disappear and the book expand to cover this space when you flip to the first spread!</p>
           </div>
-            <HTMLFlipBook 
-              width={370} 
-              height={600}
-              maxShadowOpacity={0.7}
-              drawShadow={true}
-              showCover={true}
-              size='fixed'
-              onFlip={handlePage}
-              ref={book}
-            >
-              <div className="page" style={{ background: 'transparent' }}>
-                <div className="page-content cover">
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" 
-                    alt="Pokémon Logo" 
-                    className="pokemon-logo"
-                  />
-                </div>
+          
+          {/* Removed the .nav wrapper */}
+          <HTMLFlipBook
+            width={170} 
+            height={270}
+            // minWidth={200}
+            // minHeight={300} 
+            // maxWidth={370} 
+            // maxHeight={600}
+            maxShadowOpacity={0.7}
+            drawShadow={true}
+            showCover={true}
+            size='stretch'
+            onFlip={handlePage}
+            ref={book}
+          >
+            <div className="page" style={{ background: 'transparent' }}>
+              <div className="page-content cover">
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" 
+                  alt="Pokémon Logo" 
+                  className="pokemon-logo"
+                />
               </div>
+            </div>
 
-              {pokemonData.map((pokemon) => (
-                <div className="page" key={pokemon.id}>
-                  <div className="page-content">
-                    <div className="pokemon-container">
-                      <img 
-                        src={`https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${pokemon.id}.png`} 
-                        alt={pokemon.name} 
-                      />
-                      <div className="pokemon-info">
-                        <h2 className="pokemon-name">{pokemon.name}</h2>
-                        <p className="pokemon-number">#{pokemon.id}</p>
-                        <div>
-                          {pokemon.types.map((type) => (
-                            <span key={type} className={`pokemon-type type-${type.toLowerCase()}`}>
-                              {type}
-                            </span>
-                          ))}
-                        </div>
-                        <p className="pokemon-description">{pokemon.description}</p>
+            {pokemonData.map((pokemon) => (
+              <div className="page" key={pokemon.id}>
+                <div className="page-content">
+                  <div className="pokemon-container">
+                    <img 
+                      src={`https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${pokemon.id}.png`} 
+                      alt={pokemon.name} 
+                    />
+                    <div className="pokemon-info">
+                      <h2 className="pokemon-name">{pokemon.name}</h2>
+                      <p className="pokemon-number">#{pokemon.id}</p>
+                      <div>
+                        {pokemon.types.map((type) => (
+                          <span key={type} className={`pokemon-type type-${type.toLowerCase()}`}>
+                            {type}
+                          </span>
+                        ))}
                       </div>
+                      <p className="pokemon-description">{pokemon.description}</p>
                     </div>
                   </div>
                 </div>
-              ))}
-            </HTMLFlipBook>
+              </div>
+            ))}
+          </HTMLFlipBook>
+          
+          {/* The button is now a direct child of .book-layout */}
+          <div className="nav-buttons">
+              <button 
+                  className="book-control-button" 
+                  onClick={() => book.current.pageFlip().flip(3)}
+              >
+                  About
+              </button>
+              <button 
+                  className="book-control-button" 
+                  onClick={() => book.current.pageFlip().flip(1)}
+              >
+                  Home
+              </button>
+          </div>
+            
       </div>
     </div>
   );
