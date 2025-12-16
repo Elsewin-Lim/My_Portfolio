@@ -1,26 +1,25 @@
 import HTMLFlipBook from "react-pageflip";
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import Book_cover from '../images/Book_cover.gif';
-// import BookCover from 'src/Book_cover.gif';
+
 function Book() {
-  // State to track if the book is in single-page mode (e.g., closed or start)
-  const [isOnCover, setisOnCover] = useState(true);
-  const book = useRef();
-  const bookLayoutRef = useRef(null)
+  const [isOnCover, setIsOnCover] = useState(true);
+  const book = useRef(null);
+
   useLayoutEffect(() => {
-    if (bookLayoutRef.current) {
-      void bookLayoutRef.current.offsetWidth; 
-      console.log("Reflow executed via useLayoutEffect");
-    }
+    if (!book.current) return;
+
+    requestAnimationFrame(() => {
+      book.current.pageFlip().update();
+    });
   }, [isOnCover]);
-  
+
   const handlePage = (e) => {
-    
-    setisOnCover(e.data === 0 );
+    setIsOnCover(e.data === 0);
   };
 
-  const handleClick = (n) => {
-    book.current.pageFlip().flip(n);
+  const handleClick = (page) => {
+    book.current?.pageFlip()?.flip(page);
   };
 
   
@@ -70,31 +69,25 @@ function Book() {
   ];
 
   return (
-    <div className= "container" >
-      {/* Removed top-level button */}
-      <div ref = {bookLayoutRef} className={`book-layout ${isOnCover ? 'book-cover-mode' : 'book-opened'}`}>
-          <div className="intro-paragraph">
-            <h2>Welcome to Our Story</h2>
-            <p>This paragraph is displayed next to the book cover when the book is closed (single-page mode).</p>
-            <p>Watch it disappear and the book expand to cover this space when you flip to the first spread!</p>
-          </div>
-          
-          <div className="book-container">
-            <HTMLFlipBook
-              key={isOnCover ? "cover" : "open"}
-              minWidth={262}
-              minHeight={372} 
-              maxWidth={790} 
-              maxHeight={1120}
-              width={394}
-              height={559}
-              maxShadowOpacity={0.7}
-              drawShadow={true}
-              showCover={true}
-              size='stretch'
-              onFlip={handlePage}
-              ref={book}
-            >
+    <div className="container">
+      <div className={`book-layout ${isOnCover ? "book-cover-mode" : "book-opened"}`}>
+
+        <div className="intro-paragraph">
+          <h2>Welcome to Our Story</h2>
+          <p>This paragraph appears next to the cover.</p>
+        </div>
+
+        <div className="book-container">
+          <HTMLFlipBook
+            ref={book}
+            size="stretch"
+            minWidth={262}
+            maxWidth={790}
+            width={394}
+            height={559}
+            showCover
+            onFlip={handlePage}
+          >
               <div className="page" style={{ background: 'transparent' }}>
                 <div className="page-content">
                   <img
@@ -131,8 +124,7 @@ function Book() {
                 </div>
               ))}
             </HTMLFlipBook>
-            
-            {/* The button is now a direct child of .book-layout */}
+          
             <div className="nav-buttons">
                 <button 
                     className="book-control-button" 
