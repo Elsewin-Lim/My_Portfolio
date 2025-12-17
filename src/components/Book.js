@@ -1,11 +1,13 @@
 import HTMLFlipBook from "react-pageflip";
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import Book_cover from '../images/Book_cover.gif';
+import Back_cover from '../images/Back_cover.gif';
 
 function Book() {
   const [isOnCover, setIsOnCover] = useState(true);
   const book = useRef(null);
-
+  const [currentPage, setCurrentPage] = useState(0);
+  // const userLocales = navigator.languages || [navigator.language];
   useLayoutEffect(() => {
     if (!book.current) return;
 
@@ -16,6 +18,7 @@ function Book() {
 
   const handlePage = (e) => {
     setIsOnCover(e.data === 0);
+    setCurrentPage(e.data);
   };
 
   const handleClick = (page) => {
@@ -23,7 +26,7 @@ function Book() {
   };
 
   
-  const pokemonData = [
+  const PageData = [
     {
       id: "006",
       name: "Charizard",
@@ -86,6 +89,7 @@ function Book() {
             width={394}
             height={559}
             showCover
+            maxShadowOpacity={0.6}
             onFlip={handlePage}
           >
               <div className="page" style={{ background: 'transparent' }}>
@@ -99,7 +103,7 @@ function Book() {
                 </div>
               </div>
 
-              {pokemonData.map((pokemon) => (
+              {PageData.map((pokemon) => (
                 <div className="page" key={pokemon.id}>
                   <div className="page-content">
                     <div className="pokemon-container">
@@ -123,6 +127,18 @@ function Book() {
                   </div>
                 </div>
               ))}
+
+              <div className="page" style={{ background: 'transparent' }}>
+                <div className="page-content">
+                  <img
+                    id = "BackCover" 
+                    src= {Back_cover}
+                    alt="Back Cover" 
+                    className="pokemon-logo"
+                  />
+                </div>
+              </div>
+
             </HTMLFlipBook>
           
             <div className="nav-buttons">
