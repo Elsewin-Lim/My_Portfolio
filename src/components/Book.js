@@ -6,7 +6,7 @@ import Back_cover from '../images/Back_cover.gif';
 function Book() {
   const [isOnCover, setIsOnCover] = useState(true);
   const book = useRef(null);
-  const [currentPage, setCurrentPage] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(0);
   // const userLocales = navigator.languages || [navigator.language];
   useLayoutEffect(() => {
     if (!book.current) return;
@@ -18,7 +18,7 @@ function Book() {
 
   const handlePage = (e) => {
     setIsOnCover(e.data === 0);
-    setCurrentPage(e.data);
+    // setCurrentPage(e.data);
   };
 
   const handleClick = (page) => {
@@ -27,48 +27,26 @@ function Book() {
 
   
   const PageData = [
+
     {
-      id: "006",
-      name: "Charizard",
+      PageNum: 1,
+      name: "About1",
       types: ["Fire", "Flying"],
       description: "Flies in search of strong opponents. Breathes extremely hot fire that melts anything, but never uses it on weaker foes."
     },
     {
-      id: "025",
-      name: "Pikachu",
+      PageNum: 2,
+      name: "Projects",
       types: ["Electric"],
       description: "When Pikachu meet, they touch tails to exchange electricity as a greeting."
     },
     {
-      id: "125",
-      name: "Electabuzz",
+      PageNum: 3,
+      name: "Skills",
       types: ["Electric"],
       description: "Often kept at power plants to regulate electricity. Competes with others to attract lightning during storms."
     },
-    {
-      id: "185",
-      name: "Sudowoodo",
-      types: ["Rock"],
-      description: "Despite looking like a tree, its body is more like rock. Hates water and hides when it rains."
-    },
-    {
-      id: "448",
-      name: "Lucario",
-      types: ["Fighting", "Steel"],
-      description: "Can read thoughts and movements by sensing others' aura. No foe can hide from Lucario."
-    },
-    {
-      id: "658",
-      name: "Greninja",
-      types: ["Water", "Dark"],
-      description: "Creates throwing stars from compressed water that can slice through metal when thrown at high speed."
-    },
-    {
-      id: "491",
-      name: "Darkrai",
-      types: ["Dark"],
-      description: "A legendary Pokémon that appears on moonless nights, putting people to sleep and giving them nightmares."
-    }
+    
   ];
 
   return (
@@ -76,8 +54,11 @@ function Book() {
       <div className={`book-layout ${isOnCover ? "book-cover-mode" : "book-opened"}`}>
 
         <div className="intro-paragraph">
-          <h2>Welcome to Our Story</h2>
-          <p>This paragraph appears next to the cover.</p>
+          <h2>Hi, I’m Elsewin 👋</h2>
+          <p>
+            Computer Science student | Aspiring AI & Game Developer
+            I enjoy building things and learning how technology works.
+          </p>
         </div>
 
         <div className="book-container">
@@ -95,35 +76,34 @@ function Book() {
               <div className="page" style={{ background: 'transparent' }}>
                 <div className="page-content">
                   <img
-                    id = "BookCover" 
+                    id = "FrontCover" 
                     src= {Book_cover}
                     alt="Book Cover" 
-                    className="pokemon-logo"
+                    className="BookCover"
                   />
                 </div>
               </div>
 
-              {PageData.map((pokemon) => (
-                <div className="page" key={pokemon.id}>
+              {PageData.map((PageData) => (
+                <div className="page" key={PageData.PageNum}>
                   <div className="page-content">
-                    <div className="pokemon-container">
-                      <img 
-                        src={`https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${pokemon.id}.png`} 
-                        alt={pokemon.name} 
+                    
+                      <img className = "BookContent"
+                        src={`${process.env.PUBLIC_URL}/Pages/${PageData.name}.png`} 
+                        alt={PageData.name} 
                       />
-                      <div className="pokemon-info">
-                        <h2 className="pokemon-name">{pokemon.name}</h2>
-                        <p className="pokemon-number">#{pokemon.id}</p>
+                      {/* <div className="PageData-info">
+                        <h2 className="PageData-name">{PageData.name}</h2>
+                        <p className="PageData-number">#{PageData.PageNum}</p>
                         <div>
-                          {pokemon.types.map((type) => (
-                            <span key={type} className={`pokemon-type type-${type.toLowerCase()}`}>
+                          {PageData.types.map((type) => (
+                            <span key={type} className={`PageData-type type-${type.toLowerCase()}`}>
                               {type}
                             </span>
                           ))}
                         </div>
-                        <p className="pokemon-description">{pokemon.description}</p>
-                      </div>
-                    </div>
+                        <p className="PageData-description">{PageData.description}</p>
+                      </div> */}
                   </div>
                 </div>
               ))}
@@ -134,7 +114,7 @@ function Book() {
                     id = "BackCover" 
                     src= {Back_cover}
                     alt="Back Cover" 
-                    className="pokemon-logo"
+                    className="BackCover"
                   />
                 </div>
               </div>
@@ -144,15 +124,27 @@ function Book() {
             <div className="nav-buttons">
                 <button 
                     className="book-control-button" 
+                    onClick={() => handleClick(0)}
+                >
+                    Home
+                </button>
+                <button 
+                    className="book-control-button" 
                     onClick={() => handleClick(1)}
                 >
                     About
                 </button>
                 <button 
                     className="book-control-button" 
-                    onClick={() => handleClick(0)}
+                    onClick={() => handleClick(3)}
                 >
-                    Home
+                    Projects
+                </button>
+                <button 
+                    className="book-control-button" 
+                    onClick={() => handleClick(5)}
+                >
+                    Contact
                 </button>
             </div>
           </div> 

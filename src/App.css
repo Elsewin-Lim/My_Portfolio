@@ -129,15 +129,20 @@ html {
   margin-bottom: 30px;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 } */
-
-#BookCover {
-  border: 2.5px solid #141414;
+.BackCover {
   height: auto;
   max-width: 100%;
   object-fit: contain;
 }
 
-#BackCover {
+#FrontCover {
+  border: 2px 1px 2px 2px solid #141414;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.BookContent {
   height: auto;
   max-width: 100%;
   object-fit: contain;
@@ -153,7 +158,7 @@ html {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .page-content {
@@ -167,12 +172,12 @@ html {
   text-align: center;
 }
 
-.cover {
+/* .cover {
   border: 2px solid #520ae2;
   background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
   color: white;
   font-weight: bold;
-}
+} */
 
 .pokemon-container {
   border: 2px solid #b7acb5;
