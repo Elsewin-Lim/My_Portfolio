@@ -9,7 +9,7 @@
 
 body,
 html {
-  border: 2px solid #4715b3;
+
   height: 100dvh;
   width: 100dvw;
   background: #0e1a26;
@@ -20,7 +20,7 @@ html {
 }
 
 #root {
-  border: 2px solid #b31515;
+
   width: 100%;
   display: flex;
   justify-content: center;
@@ -74,7 +74,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   width: 130px;
-  gap: 10px;
+  gap: 15px;
 }
 
 .intro-paragraph {
@@ -105,30 +105,6 @@ html {
     margin-left: -2px; 
 }
 
-.book-control-button {
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  /* CRITICAL: Remove the left border-radius for a flush look */
-  border-radius: 0 5px 5px 0; 
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.2s;
-}
-
-.book-control-button:hover {
-  background-color: #2980b9;
-}
-
-/* Existing styles for the book component */
-/* .pokemon-logo {
-  border: 2px solid #b31515;
-  width: 80%;
-  max-width: 370px;
-  margin-bottom: 30px;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-} */
 .BackCover {
   height: auto;
   max-width: 100%;
@@ -154,11 +130,53 @@ html {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.book-control-button {
+  padding: 10px 20px;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 0 5px 5px 0; 
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
 .nav-buttons {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+#home-button {
+  background: rgb(212, 255, 0);
+}
+
+#home-button:hover {
+  background: rgb(162, 190, 21);
+}
+
+#about-button {
+  background: #ffcc00;
+}
+
+#about-button:hover {
+  background: #d4ad0f;
+}
+
+#projects-button {
+  background: #ff2f00;
+}
+
+#projects-button:hover {
+  background: #b41a1a;
+}
+
+#contacts-button {
+  background: #00b3ff;
+}
+
+#contacts-button:hover {
+  background: #1982b0;
 }
 
 .page-content {

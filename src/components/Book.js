@@ -123,25 +123,29 @@ function Book() {
           
             <div className="nav-buttons">
                 <button 
-                    className="book-control-button" 
+                    className="book-control-button"
+                    id = "home-button"
                     onClick={() => handleClick(0)}
                 >
                     Home
                 </button>
                 <button 
-                    className="book-control-button" 
+                    className="book-control-button"
+                    id = "about-button"
                     onClick={() => handleClick(1)}
                 >
                     About
                 </button>
                 <button 
-                    className="book-control-button" 
+                    className="book-control-button"
+                    id = "projects-button"
                     onClick={() => handleClick(3)}
                 >
                     Projects
                 </button>
                 <button 
-                    className="book-control-button" 
+                    className="book-control-button"
+                    id = "contacts-button"
                     onClick={() => handleClick(5)}
                 >
                     Contact
