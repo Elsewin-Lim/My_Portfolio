@@ -1,13 +1,12 @@
 import HTMLFlipBook from "react-pageflip";
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import Book_cover from '../images/Book_cover.gif';
-import Back_cover from '../images/Back_cover.gif';
+import getData from "./getData";
 
 function Book() {
   const [isOnCover, setIsOnCover] = useState(true);
-  const book = useRef(null);
+  const book = useRef(null);  
   // const [currentPage, setCurrentPage] = useState(0);
-  // const userLocales = navigator.languages || [navigator.language];
+  const userLocales = navigator.languages || [navigator.language];
   useLayoutEffect(() => {
     if (!book.current) return;
 
@@ -24,40 +23,40 @@ function Book() {
   const handleClick = (page) => {
     book.current?.pageFlip()?.flip(page);
   };
+  // We get the data from another location in the src/components/getData.js (I do this to make it tidy)
+  const Data = getData(userLocales[0].slice(-2).toLowerCase());
+  // const Data = [
 
-  
-  const PageData = [
-
-    {
-      PageNum: 1,
-      name: "About1",
-      types: ["Fire", "Flying"],
-      description: "Flies in search of strong opponents. Breathes extremely hot fire that melts anything, but never uses it on weaker foes."
-    },
-    {
-      PageNum: 2,
-      name: "Projects",
-      types: ["Electric"],
-      description: "When Pikachu meet, they touch tails to exchange electricity as a greeting."
-    },
-    {
-      PageNum: 3,
-      name: "Skills",
-      types: ["Electric"],
-      description: "Often kept at power plants to regulate electricity. Competes with others to attract lightning during storms."
-    },
+  //   {
+  //     PageNum: 1,
+  //     name: "About1",
+  //     types: ["Fire", "Flying"],
+  //     description: "Flies in search of strong opponents. Breathes extremely hot fire that melts anything, but never uses it on weaker foes."
+  //   },
+  //   {
+  //     PageNum: 2,
+  //     name: "Projects",
+  //     types: ["Electric"],
+  //     description: "When Pikachu meet, they touch tails to exchange electricity as a greeting."
+  //   },
+  //   {
+  //     PageNum: 3,
+  //     name: "Skills",
+  //     types: ["Electric"],
+  //     description: "Often kept at power plants to regulate electricity. Competes with others to attract lightning during storms."
+  //   },
     
-  ];
+  // ];
+  
 
   return (
     <div className="container">
       <div className={`book-layout ${isOnCover ? "book-cover-mode" : "book-opened"}`}>
 
         <div className="intro-paragraph">
-          <h2>Hi, I’m Elsewin 👋</h2>
+          <h2>{Data.Intro[0]}</h2>
           <p>
-            Computer Science student | Aspiring AI & Game Developer
-            I enjoy building things and learning how technology works.
+            {Data.Intro[1]}
           </p>
         </div>
 
@@ -77,32 +76,32 @@ function Book() {
                 <div className="page-content">
                   <img
                     id = "FrontCover" 
-                    src= {Book_cover}
+                    src= {Data?.Page_location?.[0]?.Covers?.[0]}
                     alt="Book Cover" 
                     className="BookCover"
                   />
                 </div>
               </div>
 
-              {PageData.map((PageData) => (
-                <div className="page" key={PageData.PageNum}>
+              {Data.Page.map((Data) => (
+                <div className="page" key={Data.PageNum}>
                   <div className="page-content">
                     
                       <img className = "BookContent"
-                        src={`${process.env.PUBLIC_URL}/Pages/${PageData.name}.png`} 
-                        alt={PageData.name} 
+                        src={`${process.env.PUBLIC_URL}/images/Pages/${Data.name}.png`} 
+                        alt={Data.name} 
                       />
-                      {/* <div className="PageData-info">
-                        <h2 className="PageData-name">{PageData.name}</h2>
-                        <p className="PageData-number">#{PageData.PageNum}</p>
+                      {/* <div className="Data-info">
+                        <h2 className="Data-name">{Data.name}</h2>
+                        <p className="Data-number">#{Data.PageNum}</p>
                         <div>
-                          {PageData.types.map((type) => (
-                            <span key={type} className={`PageData-type type-${type.toLowerCase()}`}>
+                          {Data.types.map((type) => (
+                            <span key={type} className={`Data-type type-${type.toLowerCase()}`}>
                               {type}
                             </span>
                           ))}
                         </div>
-                        <p className="PageData-description">{PageData.description}</p>
+                        <p className="Data-description">{Data.description}</p>
                       </div> */}
                   </div>
                 </div>
@@ -112,7 +111,7 @@ function Book() {
                 <div className="page-content">
                   <img
                     id = "BackCover" 
-                    src= {Back_cover}
+                    src= {Data?.Page_location?.[0]?.Covers?.[1]}
                     alt="Back Cover" 
                     className="BackCover"
                   />
