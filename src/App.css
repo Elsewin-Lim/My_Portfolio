@@ -40,7 +40,7 @@ html {
   display: grid;
   grid-template-columns: minmax(0, 300px) auto;
   align-items: center;
-  gap: 30px;
+  gap: 8dvw;
 }
 
 .book-container {
@@ -52,25 +52,18 @@ html {
   display: flex; 
   justify-content: center; 
   align-items: center;
-  margin: 0 0 0 90px; 
+  margin: 0 0 0 30px; 
 }
 
 .book-opened .book-container {
-  
+  margin: 10px 60px 10px 0px;
   display: flex;
-  width: 900px;
-  height: 900px; 
+  width: 100dvw;
   justify-content: center; 
   align-items: center;
 }
-
-.book-layout .book-opened{ 
-  border: 2px solid #24d769; 
-  display: flex; 
-}
-
+/* The book expand at 1.6time */
 .book-cover-mode .nav-buttons {
-
   display: flex;
   flex-wrap: wrap;
   width: 130px;
@@ -82,19 +75,21 @@ html {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.book-opened {
-  min-width: 800px; 
+#Heading {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .book-opened .intro-paragraph {
   opacity: 0;
-  transform: translateX(-20px);
+  transform: translateX(-30px);
   pointer-events: none;
 }
 
 .book-container {
   justify-self: center;
-  min-width: 394px; /* prevents stretch collapse */
+  min-width: 394px;
 }
 
 /* Styles for the button wrapper */

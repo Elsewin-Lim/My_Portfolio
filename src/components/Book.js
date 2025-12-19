@@ -52,9 +52,9 @@ function Book() {
   return (
     <div className="container">
       <div className={`book-layout ${isOnCover ? "book-cover-mode" : "book-opened"}`}>
-
+      
         <div className="intro-paragraph">
-          <h2>{Data.Intro[0]}</h2>
+          <h2 id = "Heading">{Data.Intro[0]}</h2>
           <p>
             {Data.Intro[1]}
           </p>
@@ -65,9 +65,11 @@ function Book() {
             ref={book}
             size="stretch"
             minWidth={262}
-            maxWidth={790}
+            maxWidth={440}
+            minHeight={275}
+            maxHeight={1200}
             width={394}
-            height={559}
+            height={562}
             showCover
             maxShadowOpacity={0.6}
             onFlip={handlePage}
