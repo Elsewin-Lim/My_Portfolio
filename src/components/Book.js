@@ -126,28 +126,28 @@ function Book() {
                     id = "home-button"
                     onClick={() => handleClick(0)}
                 >
-                    Home
+                    {Data.ButtonTag.home}
                 </button>
                 <button 
                     className="book-control-button"
                     id = "about-button"
                     onClick={() => handleClick(1)}
                 >
-                    About
+                    {Data.ButtonTag.about}
                 </button>
                 <button 
                     className="book-control-button"
                     id = "projects-button"
                     onClick={() => handleClick(3)}
                 >
-                    Projects
+                    {Data.ButtonTag.projects}
                 </button>
                 <button 
                     className="book-control-button"
                     id = "contacts-button"
                     onClick={() => handleClick(5)}
                 >
-                    Contact
+                    {Data.ButtonTag.contacts}
                 </button>
             </div>
           </div> 

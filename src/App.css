@@ -34,13 +34,13 @@ html {
   align-items: center;
   height: 100dvh;
 }
-
+/* Note: make sure the size is at least 530px */
 .book-layout {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 300px) auto;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
 }
 
 .book-container {
@@ -131,7 +131,7 @@ html {
 }
 
 .book-control-button {
-  padding: 10px 20px;
+  padding: 10px 15px;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 0 5px 5px 0; 
@@ -160,7 +160,7 @@ html {
 }
 
 #about-button:hover {
-  background: #d4ad0f;
+  background: #c8a414;
 }
 
 #projects-button {
@@ -176,7 +176,7 @@ html {
 }
 
 #contacts-button:hover {
-  background: #1982b0;
+  background: #197aa4;
 }
 
 .page-content {

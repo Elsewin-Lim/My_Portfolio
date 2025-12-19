@@ -10,6 +10,14 @@ const getData = (props) => {
                 Covers: [`${process.env.PUBLIC_URL}/images/Covers/${props}/Book_cover.gif`, `${process.env.PUBLIC_URL}/images/Covers/${props}/Back_cover.gif`],
             }
         ]
+
+        const buttonTag = {
+            home: "Home",
+            about: "About Me",
+            projects: "Projects",
+            contacts: "Contacts"
+        }
+
         const PageData= [
         {
         PageNum: 1,
@@ -35,7 +43,8 @@ const getData = (props) => {
         const Data = {
             Page: PageData,
             Page_location: Page_path,
-            Intro: IntroText
+            Intro: IntroText,
+            ButtonTag: buttonTag
         }
         return Data;
     }
@@ -50,6 +59,14 @@ const getData = (props) => {
                 Covers: [`${process.env.PUBLIC_URL}/images/Covers/${props}/Book_cover.gif`, `${process.env.PUBLIC_URL}/images/Covers/${props}/Back_cover.gif`],
             }
         ]
+
+        const buttonTag = {
+            home: "ホーム",
+            about: "プロフィール",
+            projects: "プロジェクト",
+            contacts: "コンタクト"
+        }
+
         const PageData= [
         {
         PageNum: 1,
@@ -75,7 +92,8 @@ const getData = (props) => {
         const Data = {
             Page: PageData,
             Page_location: Page_path,
-            Intro: IntroText
+            Intro: IntroText,
+            ButtonTag: buttonTag
         }
         return Data;
     };
