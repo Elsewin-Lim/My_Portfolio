@@ -50,7 +50,6 @@ function Book() {
   
 
   return (
-    <div className="container">
       <div className={`book-layout ${isOnCover ? "book-cover-mode" : "book-opened"}`}>
       
         <div className="intro-paragraph">
@@ -154,7 +153,6 @@ function Book() {
             </div>
           </div> 
       </div>
-    </div>
   );
 }
 
