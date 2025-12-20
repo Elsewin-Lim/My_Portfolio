@@ -1,12 +1,12 @@
 import HTMLFlipBook from "react-pageflip";
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import getData from "./getData";
-
+import getUserLang  from "./getUserLang";
 function Book() {
   const [isOnCover, setIsOnCover] = useState(true);
   const book = useRef(null);  
   // const [currentPage, setCurrentPage] = useState(0);
-  const userLocales = navigator.languages || [navigator.language];
+  // const userLocales = navigator.languages || [navigator.language];
   useLayoutEffect(() => {
     if (!book.current) return;
 
@@ -24,7 +24,7 @@ function Book() {
     book.current?.pageFlip()?.flip(page);
   };
   // We get the data from another location in the src/components/getData.js (I do this to make it tidy)
-  const Data = getData(userLocales[0].slice(-2).toLowerCase());
+  const Data = getData(getUserLang());
   // const Data = [
 
   //   {
