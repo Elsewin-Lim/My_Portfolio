@@ -3,8 +3,15 @@ import React, { useState, useRef, useLayoutEffect } from 'react';
 import getData from "./getData";
 import getUserLang  from "./getUserLang";
 function Book() {
+  console.log("Book() is initialized")
   const [isOnCover, setIsOnCover] = useState(true);
   const book = useRef(null);  
+  const [Lang, setLang] = useState(getUserLang());
+  const supportedLang = {
+    en : "English",
+    ja : "日本語",
+  }
+  const otherLangs = Object.keys(supportedLang).filter(l => l !== Lang);
   // const [currentPage, setCurrentPage] = useState(0);
   // const userLocales = navigator.languages || [navigator.language];
   useLayoutEffect(() => {
@@ -20,34 +27,21 @@ function Book() {
     // setCurrentPage(e.data);
   };
 
+  function handleLanguage(value) {
+    setLang(value);
+  }
+  
+
   const handleClick = (page) => {
     book.current?.pageFlip()?.flip(page);
   };
   // We get the data from another location in the src/components/getData.js (I do this to make it tidy)
-  const Data = getData(getUserLang());
-  // const Data = [
+  const Data = getData(Lang);
+  console.log("Book Data received:", Data);
 
-  //   {
-  //     PageNum: 1,
-  //     name: "About1",
-  //     types: ["Fire", "Flying"],
-  //     description: "Flies in search of strong opponents. Breathes extremely hot fire that melts anything, but never uses it on weaker foes."
-  //   },
-  //   {
-  //     PageNum: 2,
-  //     name: "Projects",
-  //     types: ["Electric"],
-  //     description: "When Pikachu meet, they touch tails to exchange electricity as a greeting."
-  //   },
-  //   {
-  //     PageNum: 3,
-  //     name: "Skills",
-  //     types: ["Electric"],
-  //     description: "Often kept at power plants to regulate electricity. Competes with others to attract lightning during storms."
-  //   },
-    
-  // ];
-  
+  if (!Data || !Data.Intro) {
+    return <div style={{ color: 'white', padding: '20px' }}>Loading book data...</div>;
+  }
 
   return (
       <div className={`book-layout ${isOnCover ? "book-cover-mode" : "book-opened"}`}>
@@ -57,10 +51,19 @@ function Book() {
           <p>
             {Data.Intro[1]}
           </p>
+          <select id="mySelect" value={Lang} onChange={(e) => handleLanguage(e.target.value) }>
+              <option value={Lang}>{supportedLang[Lang]}</option>
+              {otherLangs.map(key => (
+                <option key={key} value={key}>
+                  {supportedLang[key]}
+                </option>
+              ))}
+          </select>
         </div>
 
         <div className="book-container">
           <HTMLFlipBook
+            key={Lang}
             ref={book}
             size="stretch"
             minWidth={262}
@@ -87,23 +90,10 @@ function Book() {
               {Data.Page.map((Data) => (
                 <div className="page" key={Data.PageNum}>
                   <div className="page-content">
-                    
                       <img className = "BookContent"
                         src={`${process.env.PUBLIC_URL}/images/Pages/${Data.name}.png`} 
                         alt={Data.name} 
                       />
-                      {/* <div className="Data-info">
-                        <h2 className="Data-name">{Data.name}</h2>
-                        <p className="Data-number">#{Data.PageNum}</p>
-                        <div>
-                          {Data.types.map((type) => (
-                            <span key={type} className={`Data-type type-${type.toLowerCase()}`}>
-                              {type}
-                            </span>
-                          ))}
-                        </div>
-                        <p className="Data-description">{Data.description}</p>
-                      </div> */}
                   </div>
                 </div>
               ))}

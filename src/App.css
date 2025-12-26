@@ -10,8 +10,8 @@
 body,
 html {
 
-  height: 100dvh;
-  width: 100dvw;
+  height: 100%;
+  width: 100%;
   background: #0e1a26;
   overflow: hidden; 
   display: flex;
@@ -67,14 +67,14 @@ html {
 }
 }
 
-/* .container {
-  opacity: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100dvw;
-  height: 100dvh;
-} */
+#mySelect {
+  margin: 10px 0px 0px 0px;
+  border: 2px #000000;
+  padding: 5px;
+  background-color: #197aa4;
+  border-radius: 12px 12px 12px 12px; 
+  cursor: pointer;
+}
 /* Note: make sure the x-axis is at least 630px */
 .book-layout {
   position: relative;

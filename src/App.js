@@ -6,12 +6,10 @@ import './App.css';
 function App() {
   return (
     <div className = "webLayout">
-      
         <FlipThePhone />
       <div className="container">
         <Book />
       </div>
-
     </div>
 
   );

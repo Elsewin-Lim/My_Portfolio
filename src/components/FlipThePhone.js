@@ -1,4 +1,5 @@
 function FlipThePhone () {
+    console.log("FlipThePhone() is inialized")
     return (
         <div className="phoneFlip">
             <img src = {`${process.env.PUBLIC_URL}/Rotate_phone.gif`} alt = "Hello"/>

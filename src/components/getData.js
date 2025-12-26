@@ -1,6 +1,7 @@
 const getData = (props) => {
-    if( props === "us") {
-
+    console.log("getData() is inialized")
+    if( props === "us" || props === "en") {
+        props = "en"
         const IntroText = [
             "Hi, I'm Elsewin👋",
             "Computer Science student | Aspiring AI & Game Developer I enjoy building things and learning how technology works."
