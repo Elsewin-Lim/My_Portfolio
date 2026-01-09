@@ -1,19 +1,18 @@
 import HTMLFlipBook from "react-pageflip";
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import getData from "./getData";
-import getUserLang  from "./getUserLang";
-function Book() {
+
+function Book({ Lang, setLang }) {
   console.log("Book() is initialized")
   const [isOnCover, setIsOnCover] = useState(true);
   const book = useRef(null);  
-  const [Lang, setLang] = useState(getUserLang());
+
   const supportedLang = {
     en : "English",
     ja : "日本語",
   }
   const otherLangs = Object.keys(supportedLang).filter(l => l !== Lang);
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const userLocales = navigator.languages || [navigator.language];
+
   useLayoutEffect(() => {
     if (!book.current) return;
 
@@ -52,12 +51,16 @@ function Book() {
             {Data.Intro[1]}
           </p>
           <select id="mySelect" value={Lang} onChange={(e) => handleLanguage(e.target.value) }>
-              <option value={Lang}>{supportedLang[Lang]}</option>
-              {otherLangs.map(key => (
-                <option key={key} value={key}>
-                  {supportedLang[key]}
-                </option>
-              ))}
+              <option value={Lang}>
+                {supportedLang[Lang]}
+              </option>
+              { 
+                otherLangs.map(key => (
+                  <option key={key} value={key}>
+                    {supportedLang[key]}
+                  </option>
+                ))
+              }
           </select>
         </div>
 
@@ -91,7 +94,7 @@ function Book() {
                 <div className="page" key={Data.PageNum}>
                   <div className="page-content">
                       <img className = "BookContent"
-                        src={`${process.env.PUBLIC_URL}/images/Pages/${Data.name}.png`} 
+                        src={`${process.env.PUBLIC_URL}/images/Pages/${Lang}/${Data.name}.png`} 
                         alt={Data.name} 
                       />
                   </div>
@@ -128,15 +131,22 @@ function Book() {
                 </button>
                 <button 
                     className="book-control-button"
-                    id = "projects-button"
+                    id = "skills-button"
                     onClick={() => handleClick(3)}
+                >
+                    {Data.ButtonTag.skills}
+                </button>
+                <button 
+                    className="book-control-button"
+                    id = "projects-button"
+                    onClick={() => handleClick(4)}
                 >
                     {Data.ButtonTag.projects}
                 </button>
                 <button 
                     className="book-control-button"
                     id = "contacts-button"
-                    onClick={() => handleClick(5)}
+                    onClick={() => handleClick(6)}
                 >
                     {Data.ButtonTag.contacts}
                 </button>
