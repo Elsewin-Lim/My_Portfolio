@@ -1,3 +1,58 @@
+
+const PageData= [
+    {
+    PageNum: 1,
+    name: "About1",
+    info: ""
+
+    },
+
+    {
+    PageNum: 2,
+    name: "About2",
+    info: ""
+
+    },
+
+    {
+    PageNum: 3,
+    name: "Skills",
+    info: ""
+
+    },
+    {
+    PageNum: 4,
+    name: "Projects",
+    info: ""
+
+    },
+
+    {
+    PageNum: 5,
+    name: "Projects2",
+    info: ""
+
+    },
+
+    {
+    PageNum: 6,
+    name: "Blank",
+    info: ""
+
+    },
+
+    {
+    PageNum: 7,
+    name: "Blank",
+    info: ""
+
+    },
+
+];
+
+
+
+
 const getData = (props) => {
     console.log("getData() is inialized")
     if( props === "us" || props === "en") {
@@ -7,6 +62,7 @@ const getData = (props) => {
             "Hi, I'm Elsewin",
             "Computer Science student | Aspiring Softwarer Developer"
         ];
+
         const img_path = [
             {
                 Covers: [`${process.env.PUBLIC_URL}/images/Covers/${props}/Book_cover.gif`, `${process.env.PUBLIC_URL}/images/Covers/${props}/Back_cover.gif`],
@@ -21,43 +77,6 @@ const getData = (props) => {
             projects: "Projects",
             contacts: "Contacts"
         }
-
-        const PageData= [
-            {
-            PageNum: 1,
-            name: "About1",
-            info: ""
-
-            },
-
-            {
-            PageNum: 2,
-            name: "About(2)",
-            info: ""
-
-            },
-
-            {
-            PageNum: 3,
-            name: "Skills",
-            info: ""
-
-            },
-            {
-            PageNum: 4,
-            name: "Projects",
-            info: ""
-
-            },
-
-            {
-            PageNum: 5,
-            name: "Blank",
-            info: ""
-
-            },
-        
-        ];
 
         const Data = {
             Page: PageData,
@@ -89,43 +108,6 @@ const getData = (props) => {
             projects: "プロジェクト",
             contacts: "コンタクト"
         }
-
-        const PageData= [
-            {
-            PageNum: 1,
-            name: "About1",
-            info: ""
-
-            },
-
-            {
-            PageNum: 2,
-            name: "About(2)",
-            info: ""
-
-            },
-
-            {
-            PageNum: 3,
-            name: "Skills",
-            info: ""
-
-            },
-            {
-            PageNum: 4,
-            name: "Projects",
-            info: ""
-
-            },
-
-            {
-            PageNum: 5,
-            name: "Blank",
-            info: ""
-
-            },
-        
-        ];
 
         const Data = {
             Page: PageData,

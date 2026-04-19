@@ -86,6 +86,7 @@ function Book({ Lang, setLang }) {
                     src= {Data?.Page_location?.[0]?.Covers?.[0]}
                     alt="Book Cover" 
                     className="BookCover"
+                    fetchpriority="high"
                   />
                 </div>
               </div>
@@ -94,8 +95,9 @@ function Book({ Lang, setLang }) {
                 <div className="page" key={Data.PageNum}>
                   <div className="page-content">
                       <img className = "BookContent"
-                        src={`${process.env.PUBLIC_URL}/images/Pages/${Lang}/${Data.name}.png`} 
-                        alt={Data.name} 
+                        src={`${process.env.PUBLIC_URL}/images/Pages/${Lang}/${Data.name}.webp`} 
+                        alt={Data.name}
+                        loading = "lazy" 
                       />
                   </div>
                 </div>
