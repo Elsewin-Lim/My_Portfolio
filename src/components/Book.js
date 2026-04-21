@@ -148,7 +148,7 @@ function Book({ Lang, setLang }) {
                 <button 
                     className="book-control-button"
                     id = "contacts-button"
-                    onClick={() => handleClick(6)}
+                    onClick={() => handleClick(7)}
                 >
                     {Data.ButtonTag.contacts}
                 </button>
